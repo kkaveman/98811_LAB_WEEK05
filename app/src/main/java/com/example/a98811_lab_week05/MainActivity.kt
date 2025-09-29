@@ -7,10 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.a98811_lab_week05.api.CatApiService
+import retrofit2.Callback
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import android.util.Log
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call : Call<String>, response: Response<String>){
                 if (response.isSuccessful){
-                    apiResponseView.text = response.body
+                    apiResponseView.text = response.body()
                 }
                 else{
                     Log.e(MAIN_ACTIVITY,"Failed to get response\n" + response.errorBody()?.string().orEmpty())
